@@ -70,7 +70,7 @@ func (e notFoundError) Error() string {
 	switch e.cause.Code {
 	case errcode.ErrorCodeDenied:
 		// ErrorCodeDenied is used when access to the repository was denied
-		return fmt.Sprintf("pull access denied for %s, repository does not exist or may require 'docker login'", reference.FamiliarName(e.ref))
+		return fmt.Sprintf("pull access denied for %s, repository does not exist or may require 'docker login': %s", reference.FamiliarName(e.ref), e.cause.Message)
 	case v2.ErrorCodeManifestUnknown:
 		return fmt.Sprintf("manifest for %s not found", reference.FamiliarString(e.ref))
 	case v2.ErrorCodeNameUnknown:
